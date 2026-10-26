@@ -38,6 +38,8 @@
   #side a.active { background: var(--accent); color: #fff; }
   #side #toc a { font-size: .85rem; color: var(--muted); padding: 2px 8px 2px 16px; }
   #side #toc a:hover { color: var(--text); }
+  #side #toc a.part { color: var(--text); font-weight: 600; padding-left: 8px; margin-top: 8px; }
+  #content h1 ~ h1 { font-size: 1.6rem; margin-top: 2.4em; padding: .4em .6em; border-radius: 8px; background: var(--bg-side); border-left: 5px solid var(--accent); }
   #main { flex: 1; min-width: 0; padding: 32px 48px 80px; }
   #content { max-width: 860px; margin: 0 auto; }
   #topbar { display: none; }
@@ -186,7 +188,9 @@ async function show() {
   const i = ALL.indexOf(doc);
   const prev = ALL[i - 1], next = ALL[i + 1];
   el.insertAdjacentHTML('beforeend', `<nav class="pager">${prev ? `<a href="${href(prev)}">← ${esc(label(prev))}</a>` : '<span></span>'}${next ? `<a href="${href(next)}">${esc(label(next))} →</a>` : ''}</nav>`);
-  $('#toc').innerHTML = [...el.querySelectorAll('h2')].map(h => `<a href="${href(doc, h.textContent)}">${esc(h.textContent)}</a>`).join('');
+  // Secondary h1s are "parts" of a document: shown as group labels in the TOC.
+  $('#toc').innerHTML = [...el.querySelectorAll('h1, h2')].slice(1).map(h =>
+    `<a href="${href(doc, h.textContent)}" class="${h.tagName === 'H1' ? 'part' : ''}">${esc(h.textContent)}</a>`).join('');
   document.title = label(doc) + ' · Matemáticas CCSS II';
   $('#toptitle').textContent = label(doc);
   const waitMJ = () => window.MathJax && MathJax.typesetPromise ? MathJax.typesetPromise([el]) : new Promise(r => setTimeout(r, 100)).then(waitMJ);
