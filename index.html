@@ -258,6 +258,12 @@ async function renderDoc(doc, el, prefix) {
     const { md, math } = preprocess(await res.text(), doc);
     el.innerHTML = marked.parse(md, { gfm: true, breaks: true, headerIds: false, mangle: false });
     postprocess(el, math, prefix);
+    // Links to a section of another document open in the side panel (from the main view or from the panel).
+    el.querySelectorAll('a[href^="#doc="]').forEach(a => {
+      const t = new URLSearchParams(a.getAttribute('href').slice(1));
+      if (t.get('h') && t.get('doc') !== doc) { a.classList.add('to-panel'); a.title = 'Se abre en el panel lateral'; }
+    });
+    el.querySelectorAll('p').forEach(p => { if (/^Teoría:/.test(p.textContent)) p.classList.add('theory-ref'); });
     return true;
   } catch (e) {
     el.innerHTML = `<p id="error">No se pudo cargar «${esc(doc)}» (${esc(String(e.message || e))}).</p>`;
@@ -299,11 +305,6 @@ async function renderPanel(panel) {
 async function renderMain(doc) {
   const el = $('#content');
   if (!await renderDoc(doc, el, '')) return;
-  el.querySelectorAll('a[href^="#doc="]').forEach(a => {
-    const t = new URLSearchParams(a.getAttribute('href').slice(1));
-    if (t.get('h') && t.get('doc') !== doc) { a.classList.add('to-panel'); a.title = 'Se abre en el panel lateral'; }
-  });
-  el.querySelectorAll('p').forEach(p => { if (/^Teoría:/.test(p.textContent)) p.classList.add('theory-ref'); });
   const i = ALL.indexOf(doc);
   const prev = ALL[i - 1], next = ALL[i + 1];
   el.insertAdjacentHTML('beforeend', `<nav class="pager">${prev ? `<a href="${href(prev)}">← ${esc(label(prev))}</a>` : '<span></span>'}${next ? `<a href="${href(next)}">${esc(label(next))} →</a>` : ''}</nav>`);
@@ -325,7 +326,8 @@ document.addEventListener('click', e => {
   e.preventDefault();
   const t = new URLSearchParams(a.getAttribute('href').slice(1));
   const s = state();
-  if (a.closest('#panel') && t.get('doc') === s.panel) return scrollPanelTo(t.get('h'));
+  const inPanel = !!a.closest('#panel');
+  if (inPanel && t.get('doc') === s.panel) return scrollPanelTo(t.get('h'));
   if (a.classList.contains('to-panel')) return go({ doc: s.doc, h: null, panel: t.get('doc'), ph: t.get('h') });
   go({ doc: t.get('doc'), h: t.get('h'), panel: s.panel });
 });
