@@ -91,13 +91,22 @@ $$y-C(0)=C'(0)\,(t-0),\quad\text{luego}\quad y=4t$$
 
 *Disminuye más rápido = $C'$ mínima (lo más negativa posible). Los extremos de $C'$ están donde $C''=0$: en los puntos de inflexión.*
 
-*Derivo $C'(t)=36\,(9-t^2)\,(t^2+9)^{-2}$ (producto y cadena):*
+*Derivo $C'(t)=\dfrac{36\,(9-t^2)}{(t^2+9)^2}$ como un cociente, $\left(\dfrac{u}{v}\right)'=\dfrac{u'v-uv'}{v^2}$. Primero cada parte por separado (el denominador lleva regla de la cadena):*
 
-$$C''(t)=36\left[-2t\,(t^2+9)^{-2}+(9-t^2)\cdot(-2)(t^2+9)^{-3}\cdot 2t\right]$$
+$$u=36\,(9-t^2) \qquad u'=-72t$$
+$$v=(t^2+9)^2 \qquad v'=2\,(t^2+9)\cdot 2t=4t\,(t^2+9)$$
 
-*Factor común $(t^2+9)^{-3}$:*
+*Sustituyo en la fórmula:*
 
-$$C''(t)=\frac{36\left[-2t(t^2+9)-4t(9-t^2)\right]}{(t^2+9)^3}=\frac{36\,(2t^3-54t)}{(t^2+9)^3}=\frac{72\,t\,(t^2-27)}{(t^2+9)^3}$$
+$$C''(t)=\frac{-72t\,(t^2+9)^2-36\,(9-t^2)\cdot 4t\,(t^2+9)}{(t^2+9)^4}$$
+
+*Todos los términos llevan $(t^2+9)$: lo simplifico una vez arriba y abajo.*
+
+$$C''(t)=\frac{-72t\,(t^2+9)-144t\,(9-t^2)}{(t^2+9)^3}=\frac{-72t^3-648t-1296t+144t^3}{(t^2+9)^3}=\frac{72t^3-1944t}{(t^2+9)^3}$$
+
+*Saco factor común $72t$ para estudiar el signo:*
+
+$$C''(t)=\frac{72\,t\,(t^2-27)}{(t^2+9)^3}$$
 
 $$C''(t)=0 \quad\text{cuando}\quad t=0 \text{ o } t^2=27,\ \text{es decir, } t=0 \text{ o } t=\pm 3\sqrt3$$
 
@@ -120,9 +129,9 @@ $$C(3\sqrt3)=\frac{36\cdot3\sqrt3}{27+9}=3\sqrt3\approx5{,}20 \qquad C'(3\sqrt3)
 
 ### i) Representación
 
-*Pasa por $(0,0)$, sube con pendiente 4 hasta el máximo $(3,6)$, baja, cambia de curvatura en $(5{,}2;\ 5{,}2)$ y se acerca a $y=0$. Puntos de apoyo: $(1;\ 3{,}6)$, $(9;\ 3{,}6)$ y $C(12)\approx2{,}82$.*
+*Pasa por $(0,0)$, sube con pendiente 4 hasta el máximo $(3,6)$, baja, cambia de curvatura en $(5{,}2;\ 5{,}2)$ y se acerca a $y=0$ sin llegar a tocarla. Puntos de apoyo: $(1;\ 3{,}6)$, $(9;\ 3{,}6)$, $C(12)\approx2{,}82$ y $C(60)\approx0{,}6$.*
 
-![[ej1_concentracion.svg|560]]
+![[ej1_concentracion.svg|760]]
 
 ---
 

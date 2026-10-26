@@ -73,10 +73,10 @@ En el ejemplo: $f''(-1)=-6<0$ (máximo) y $f''(1)=6>0$ (mínimo).
 
 ## En contexto
 
-| | Medicamento $C(t)$ | Beneficio $B(x)$ |
+| | Coche en una carretera recta: posición $s(t)$ | Beneficio $B(x)$ |
 |---|---|---|
-| $f$ | concentración en el instante $t$ | beneficio al vender $x$ unidades |
-| $f'$ | velocidad a la que sube o baja la concentración | cuánto aumenta el beneficio por cada unidad más |
-| $f''$ | si esa velocidad aumenta o disminuye | si cada unidad extra aporta más o menos que la anterior |
-| $f'=0$ | concentración **máxima** | beneficio **máximo** |
-| Punto de inflexión | la concentración baja **más rápido** ([[3 - Soluciones Funciones#h) Curvatura e instante de máxima disminución\|Ejercicio 1 h]]) | a partir de ahí, cada unidad aporta menos |
+| $f$ | **posición**: a cuántos km del punto de salida está en el instante $t$ | beneficio al vender $x$ unidades |
+| $f'$ | **velocidad**: positiva si avanza, negativa si vuelve hacia atrás | cuánto aumenta el beneficio por cada unidad más |
+| $f''$ | **aceleración**: positiva si la velocidad aumenta, negativa si disminuye | si cada unidad extra aporta más o menos que la anterior |
+| $f'=0$ | el coche está **parado** en ese instante; si después da la vuelta, es el punto **más lejano** al que llega | beneficio **máximo** |
+| Punto de inflexión | la velocidad es **máxima**: deja de acelerar y empieza a frenar | a partir de ahí, cada unidad aporta menos |

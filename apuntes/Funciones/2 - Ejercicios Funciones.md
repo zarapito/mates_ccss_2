@@ -24,7 +24,7 @@ donde $a>0$ es una constante que depende de la dosis.
 
 **g)** ¿A qué **velocidad** aumenta la concentración justo al tomar el medicamento? Escribe la **recta tangente** a la gráfica de $C$ en $t=0$ y explica qué representa.
 
-**h)** Estudia la curvatura de $C$. ¿En qué instante **disminuye más rápidamente** la concentración? ¿A qué velocidad, y qué concentración hay entonces?
+**h)** Estudia la curvatura de $C$. Después del máximo la concentración baja, pero no siempre al mismo ritmo: ¿en qué instante **baja más deprisa**? ¿A qué velocidad (en mg/l por hora) está bajando en ese instante, y qué concentración hay entonces?
 
 **i)** Representa gráficamente $C(t)$.
 
