@@ -1,13 +1,12 @@
 # Funciones — Ejercicios
 
 > [!info] Instrucciones
-> Tres ejercicios largos. Cada uno recorre el bloque **de forma progresiva**: los apartados se apoyan en los anteriores.
 > Antes de calcular, pregúntate siempre: **¿qué me están pidiendo en lenguaje matemático?** (consulta el *diccionario* de [[1 - Teoría Funciones#12. Ejercicios con parámetros]]).
 > Soluciones en [[3 - Soluciones Funciones]].
 
 ---
 
-## Ejercicio 1 — Concentración de un medicamento (contexto)
+## Ejercicio 1 — Concentración de un medicamento
 
 Un laboratorio estudia un nuevo analgésico. La concentración del medicamento en sangre, en miligramos por litro (mg/l), $t$ horas después de tomarlo, viene dada por
 
