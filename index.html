@@ -176,7 +176,8 @@ async function show() {
   $('#side').classList.remove('open');
   const el = $('#content');
   try {
-    const res = await fetch(FOLDER + encodeURIComponent(doc) + '.md');
+    // no-cache: revalidate so edits uploaded to GitHub show up without a hard refresh.
+    const res = await fetch(FOLDER + encodeURIComponent(doc) + '.md', { cache: 'no-cache' });
     if (!res.ok) throw new Error(res.status);
     const { md, math } = preprocess(await res.text(), doc);
     el.innerHTML = marked.parse(md, { gfm: true, breaks: true, headerIds: false, mangle: false });
