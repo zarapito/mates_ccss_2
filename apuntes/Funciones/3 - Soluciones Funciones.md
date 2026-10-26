@@ -2,9 +2,18 @@
 
 ## Ejercicio 1 — Concentración de un medicamento
 
-$$C(t)=\frac{a\,t}{t^2+9},\qquad t\geq 0,\ a>0$$
+La concentración en sangre de un analgésico, en mg/l, $t$ horas después de tomarlo es
+
+$$C(t)=\frac{a\,t}{t^2+9},\qquad t\geq 0,$$
+
+donde $a>0$ es una constante que depende de la dosis.
 
 ### a) Máximo a las 3 h y valor de $a$
+
+> [!question] Enunciado
+> Demuestra que, **sea cual sea la dosis** ($a>0$), la concentración máxima se alcanza a las 3 horas. Si esa concentración máxima es de $6$ mg/l, calcula $a$.
+>
+> *En el resto de apartados, usa el valor de $a$ obtenido.*
 
 Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]] · [[1 - Teoría Funciones#11. Optimización|Optimización]]
 
@@ -29,6 +38,9 @@ $$C(3)=\frac{3a}{9+9}=\frac{a}{6}=6,\quad\text{luego}\quad a=36$$
 
 ### b) Dominio, continuidad y derivabilidad
 
+> [!question] Enunciado
+> ¿Cuál es el dominio de $C$ como función matemática? ¿Y en el contexto del problema? ¿Es $C$ continua y derivable en su dominio? Justifícalo.
+
 Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]] · [[1 - Teoría Funciones#4. Continuidad|Continuidad]] · [[1 - Teoría Funciones#6. Derivabilidad|Derivabilidad]]
 
 $$t^2+9=0 \quad\text{da}\quad t^2=-9 \quad \text{(sin solución real)}$$
@@ -38,6 +50,9 @@ $$t^2+9=0 \quad\text{da}\quad t^2=-9 \quad \text{(sin solución real)}$$
 > **Respuesta:** Como función matemática, $\text{Dom}(C)=\mathbb{R}$, ya que $t^2+9\neq0$. En el contexto, $\text{Dom}(C)=[0,+\infty)$, porque el tiempo no puede ser negativo. $C$ es racional con denominador que no se anula, luego es continua y derivable en todo su dominio.
 
 ### c) Concentración inicial y cuándo es nula
+
+> [!question] Enunciado
+> ¿Cuál es la concentración en el momento de tomar el medicamento? ¿Vuelve a ser nula en algún momento?
 
 Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]]
 
@@ -49,6 +64,9 @@ $$C(0)=\frac{0}{9}=0 \qquad\quad C(t)=0 \quad\text{solo si}\quad 36t=0,\ \text{e
 
 ### d) Cuándo aumenta y cuándo disminuye
 
+> [!question] Enunciado
+> ¿Durante qué periodo de tiempo **aumenta** la concentración y durante cuál **disminuye**?
+
 Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]]
 
 *Es monotonía: uso la tabla de a) con $a=36$.*
@@ -58,6 +76,9 @@ $$C'(t)=\frac{36\,(9-t^2)}{(t^2+9)^2}$$
 > **Respuesta:** La concentración aumenta en $(0,3)$ y disminuye en $(3,+\infty)$. Alcanza un máximo de $6$ mg/l a las 3 horas: punto $(3,\,6)$.
 
 ### e) Periodo de eficacia
+
+> [!question] Enunciado
+> El medicamento solo hace efecto si la concentración es **de al menos 3,6 mg/l**. ¿Durante cuántas horas es eficaz? ¿Entre qué instantes?
 
 *Es una inecuación. Multiplico por $t^2+9>0$ sin cambiar el sentido de la desigualdad.*
 
@@ -77,6 +98,9 @@ $$t^2-10t+9=0:\quad t=\frac{10\pm\sqrt{100-36}}{2}=\frac{10\pm8}{2},\ \text{lueg
 
 ### f) Comportamiento a largo plazo
 
+> [!question] Enunciado
+> ¿Qué ocurre con la concentración **a largo plazo**? Justifícalo con un límite e interprétalo en términos de asíntotas.
+
 Teoría: [[1 - Teoría Funciones#1. Límites|Límites]] · [[1 - Teoría Funciones#5. Asíntotas|Asíntotas]]
 
 *Largo plazo: $t\to+\infty$. Grado mayor abajo, así que el límite es $0$ y hay AH.*
@@ -89,6 +113,9 @@ $$\lim_{t\to+\infty}\frac{36t}{t^2+9}=0$$
 
 ### g) Velocidad inicial y recta tangente en $t=0$
 
+> [!question] Enunciado
+> ¿A qué **velocidad** aumenta la concentración justo al tomar el medicamento? Escribe la **recta tangente** a la gráfica de $C$ en $t=0$ y explica qué representa.
+
 Teoría: [[1 - Teoría Funciones#10. Recta tangente|Recta tangente]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]]
 
 *Velocidad = derivada; al tomarlo, $t=0$. Necesito $C(0)$ y $C'(0)$.*
@@ -100,6 +127,9 @@ $$y-C(0)=C'(0)\,(t-0),\quad\text{luego}\quad y=4t$$
 > **Respuesta:** Al tomarlo, la concentración aumenta a $4$ mg/l por hora. La tangente en $t=0$ es $y=4t$: indica cómo crecería la concentración si mantuviera esa velocidad inicial, y solo es una buena aproximación para $t$ cercano a $0$.
 
 ### h) Curvatura e instante de máxima disminución
+
+> [!question] Enunciado
+> Estudia la curvatura de $C$. Después del máximo la concentración baja, pero no siempre al mismo ritmo: ¿en qué instante **baja más deprisa**? ¿A qué velocidad (en mg/l por hora) está bajando en ese instante, y qué concentración hay entonces?
 
 Teoría: [[1 - Teoría Funciones#8. Curvatura y puntos de inflexión|Curvatura y puntos de inflexión]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]] · [[Tabla f, f' y f''#Qué significa cada signo|Tabla f, f' y f'']]
 
@@ -142,6 +172,9 @@ $$C(3\sqrt3)=\frac{36\cdot3\sqrt3}{27+9}=3\sqrt3\approx5{,}20 \qquad C'(3\sqrt3)
 
 ### i) Representación
 
+> [!question] Enunciado
+> Representa gráficamente $C(t)$.
+
 Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gráfica]]
 
 *Pasa por $(0,0)$, sube con pendiente 4 hasta el máximo $(3,6)$, baja, cambia de curvatura en $(5{,}2;\ 5{,}2)$ y se acerca a $y=0$ sin llegar a tocarla. Puntos de apoyo: $(1;\ 3{,}6)$, $(9;\ 3{,}6)$, $C(12)\approx2{,}82$ y $C(60)\approx0{,}6$.*
@@ -152,9 +185,14 @@ Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gr�
 
 ## Ejercicio 2 — Función con parámetros
 
-$$f(x)=\frac{x^2+a\,x+b}{x-1}$$
+Se considera la función
+
+$$f(x)=\frac{x^2+a\,x+b}{x-1},\qquad a,b\in\mathbb{R}.$$
 
 ### a) Continuidad según $a$ y $b$
+
+> [!question] Enunciado
+> Estudia la **continuidad** de $f$ según los valores de $a$ y $b$, indicando de qué **tipo** es la discontinuidad en $x=1$. ¿Puede ser $f$ derivable en $x=1$?
 
 Teoría: [[1 - Teoría Funciones#4. Continuidad|Continuidad]] · [[1 - Teoría Funciones#1. Límites|Límites]] · [[1 - Teoría Funciones#6. Derivabilidad|Derivabilidad]]
 
@@ -180,6 +218,11 @@ $$x^2+ax-1-a=(x-1)(x+1+a),\quad\text{luego}\quad \lim_{x\to1}\frac{(x-1)(x+1+a)}
 
 ### b) Cálculo de $a$ y $b$
 
+> [!question] Enunciado
+> Halla $a$ y $b$ sabiendo que la gráfica de $f$ **pasa por el punto $(2,\,8)$** y que en el punto de abscisa $x=3$ su recta tangente es **paralela al eje de abscisas**.
+>
+> *En el resto de apartados, usa los valores obtenidos en b).*
+
 Teoría: [[1 - Teoría Funciones#12. Ejercicios con parámetros|Ejercicios con parámetros]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]]
 
 *"Pasa por $(2,8)$" se traduce en $f(2)=8$. "Tangente paralela al eje de abscisas en $x=3$" se traduce en $f'(3)=0$.*
@@ -195,6 +238,9 @@ $$\begin{cases}2a+b=4\\ a+b=3\end{cases}\quad\text{Restando las dos ecuaciones:}
 > **Respuesta:** $a=1$, $b=2$, y $f(x)=\dfrac{x^2+x+2}{x-1}$.
 
 ### c) Dominio, cortes y asíntotas
+
+> [!question] Enunciado
+> Calcula el **dominio**, los **puntos de corte** con los ejes y las **asíntotas** de $f$. Indica la posición de la gráfica respecto a la asíntota no vertical.
 
 Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]] · [[1 - Teoría Funciones#5. Asíntotas|Asíntotas]]
 
@@ -231,6 +277,9 @@ $$x\to+\infty:\ \frac{4}{x-1}>0 \ (\text{encima}) \qquad x\to-\infty:\ \frac{4}{
 
 ### d) Monotonía y extremos
 
+> [!question] Enunciado
+> Estudia la **monotonía** de $f$ y halla sus **extremos relativos**. Observa los valores de $f$ en ellos: ¿cómo es posible que el máximo sea "más bajo" que el mínimo? ¿Tiene $f$ máximo o mínimo **absoluto**?
+
 Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]]
 
 $$f'(x)=\frac{x^2-2x-3}{(x-1)^2}=\frac{(x-3)(x+1)}{(x-1)^2}$$
@@ -254,6 +303,9 @@ $$f(-1)=\frac{1-1+2}{-2}=-1 \qquad f(3)=\frac{9+3+2}{2}=7$$
 
 ### e) Curvatura
 
+> [!question] Enunciado
+> Estudia la **curvatura** de $f$. ¿Tiene puntos de inflexión?
+
 Teoría: [[1 - Teoría Funciones#8. Curvatura y puntos de inflexión|Curvatura y puntos de inflexión]]
 
 *Más rápido que derivar el cociente: $f(x)=x+2+4(x-1)^{-1}$.*
@@ -270,6 +322,9 @@ $$f'(x)=1-4(x-1)^{-2} \qquad f''(x)=8(x-1)^{-3}=\frac{8}{(x-1)^3}$$
 > **Respuesta:** $f$ es convexa ◠ en $(-\infty,1)$ y cóncava ◡ en $(1,+\infty)$. No tiene puntos de inflexión: la curvatura cambia en $x=1$, que no pertenece al dominio.
 
 ### f) Tangentes paralelas a $3x+y=5$
+
+> [!question] Enunciado
+> Halla las ecuaciones de las rectas tangentes a la gráfica de $f$ que son **paralelas a la recta $3x+y=5$**.
 
 Teoría: [[1 - Teoría Funciones#10. Recta tangente|Recta tangente]]
 
@@ -288,6 +343,9 @@ $$x=2:\ f(2)=8,\quad y-8=-3(x-2),\quad\text{luego}\quad y=-3x+14$$
 
 ### g) Representación
 
+> [!question] Enunciado
+> Representa gráficamente $f$.
+
 Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gráfica]]
 
 *AV $x=1$, AO $y=x+2$. Rama izquierda (convexa ◠): viene de $-\infty$ por debajo de la AO, sube al máximo $(-1,-1)$, pasa por $(0,-2)$ y cae a $-\infty$ junto a $x=1$. Rama derecha (cóncava ◡): baja desde $+\infty$ al mínimo $(3,7)$ y sube pegada a la AO por encima.*
@@ -298,14 +356,20 @@ Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gr�
 
 ## Ejercicio 3 — Función a trozos
 
+Se considera la función
+
 $$
 f(x)=\begin{cases}
 \dfrac{a\,x+b}{x+2} & \text{si } x\leq 0\\[3mm]
 1+\ln(x+1) & \text{si } x>0
 \end{cases}
+\qquad a,b\in\mathbb{R}.
 $$
 
 ### a) Dominio
+
+> [!question] Enunciado
+> Calcula el **dominio** de $f$. ¿Por qué el denominador $x+2$ y el logaritmo no afectan al dominio igual que si cada expresión estuviera definida en todo $\mathbb{R}$?
 
 Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]]
 
@@ -317,6 +381,12 @@ $$\text{Trozo 2 } (x>0):\quad x+1>0 \text{ cuando } x>-1,\ \text{que se cumple p
 > **Respuesta:** $\text{Dom}(f)=\mathbb{R}-\{-2\}$. El denominador del primer trozo se anula en $x=-2$, que pertenece a su intervalo, así que se excluye. El logaritmo exige $x>-1$, que siempre se cumple en el segundo trozo ($x>0$).
 
 ### b) Continuidad y derivabilidad en $x=0$
+
+> [!question] Enunciado
+> Halla $a$ y $b$ para que la gráfica de $f$ se pueda dibujar **sin levantar el lápiz y sin "picos"** en $x=0$.
+> ¿Qué tipo de problema tendría la gráfica en $x=0$ si $b=2$ pero $a\neq 3$? ¿Y si $b\neq 2$?
+>
+> *En el resto de apartados, usa los valores obtenidos en b).*
 
 Teoría: [[1 - Teoría Funciones#4. Continuidad|Continuidad]] · [[1 - Teoría Funciones#6. Derivabilidad|Derivabilidad]] · [[1 - Teoría Funciones#12. Ejercicios con parámetros|Ejercicios con parámetros]]
 
@@ -344,6 +414,9 @@ $$\frac{2a-2}{4}=1,\quad\text{luego}\quad 2a-2=4\quad\text{y}\quad a=3$$
 
 ### c) Puntos de corte
 
+> [!question] Enunciado
+> Halla los **puntos de corte** con los ejes.
+
 Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]]
 
 *Con $a=3$, $b=2$. Resuelvo $f(x)=0$ en cada trozo y compruebo el intervalo.*
@@ -355,6 +428,9 @@ $$\text{Eje Y: } f(0)=\frac{2}{2}=1$$
 > **Respuesta:** Corta al eje X en $\left(-\tfrac23,\,0\right)$ y al eje Y en $(0,\,1)$. La solución $x=e^{-1}-1$ del segundo trozo se descarta porque no cumple $x>0$.
 
 ### d) Asíntotas
+
+> [!question] Enunciado
+> Estudia las **asíntotas** de $f$ y la tendencia de la función en $\pm\infty$.
 
 Teoría: [[1 - Teoría Funciones#5. Asíntotas|Asíntotas]] · [[1 - Teoría Funciones#1. Límites|Límites]]
 
@@ -379,6 +455,9 @@ $$m=\lim_{x\to+\infty}\frac{1+\ln(x+1)}{x}=0,\quad\text{luego no hay AO}$$
 
 ### e) Monotonía
 
+> [!question] Enunciado
+> Estudia la **monotonía**. ¿Tiene $f$ algún punto con **tangente horizontal**? ¿Es cierto que $f(x_1)<f(x_2)$ siempre que $x_1<x_2$? Razónalo.
+
 Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]]
 
 *Derivadas de b) con $a=3$, $b=2$; $f'(0)=1$.*
@@ -398,6 +477,9 @@ $$f'(x)=\begin{cases}\dfrac{4}{(x+2)^2} & \text{si } x\leq 0,\ x\neq-2\\[3mm] \d
 
 ### f) Curvatura
 
+> [!question] Enunciado
+> Estudia la **curvatura** de $f$ y sus posibles puntos de inflexión.
+
 Teoría: [[1 - Teoría Funciones#8. Curvatura y puntos de inflexión|Curvatura y puntos de inflexión]]
 
 $$f''(x)=\begin{cases}\dfrac{-8}{(x+2)^3} & \text{si } x<0,\ x\neq-2\\[3mm] \dfrac{-1}{(x+1)^2} & \text{si } x>0\end{cases}$$
@@ -413,6 +495,9 @@ $$f''(x)=\begin{cases}\dfrac{-8}{(x+2)^3} & \text{si } x<0,\ x\neq-2\\[3mm] \dfr
 
 ### g) Rectas tangentes
 
+> [!question] Enunciado
+> Halla la ecuación de la recta tangente a la gráfica de $f$ en su punto de **corte con el eje de abscisas**, y la de la recta tangente en el punto de **unión de los dos trozos**.
+
 Teoría: [[1 - Teoría Funciones#10. Recta tangente|Recta tangente]]
 
 *Corte con el eje X en $x=-\frac23$ (apartado c). Pendiente con el trozo 1:*
@@ -427,6 +512,9 @@ $$y-1=1\cdot(x-0),\quad\text{luego}\quad y=x+1$$
 > **Respuesta:** La tangente en el corte con el eje de abscisas, $\left(-\tfrac23,0\right)$, es $y=\tfrac94x+\tfrac32$. La tangente en el punto de unión, $(0,1)$, es $y=x+1$, común a los dos trozos porque $f$ es derivable en $x=0$.
 
 ### h) Representación
+
+> [!question] Enunciado
+> Representa gráficamente $f$.
 
 Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gráfica]]
 

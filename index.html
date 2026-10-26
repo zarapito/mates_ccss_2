@@ -54,7 +54,13 @@
     body.has-panel:not(.pin-side) #topbar { display: flex; margin: -32px -48px 24px; }
     body.has-panel:not(.pin-side) #content :is(h1, h2, h3) { scroll-margin-top: 70px; }
     body.has-panel.pin-side #main { padding: 32px 24px 80px; }
-    body.has-panel.pin-side #pinSide { display: inline-block; }
+  }
+  /* Computers: « hides the menu at any time (with or without the panel) and ☰ brings it back */
+  @media (min-width: 861px) {
+    #pinSide { display: inline-block; }
+    body.side-collapsed #side { display: none; }
+    body.side-collapsed #topbar { display: flex; margin: -32px -48px 24px; }
+    body.side-collapsed #content :is(h1, h2, h3) { scroll-margin-top: 70px; }
   }
   #tools { position: fixed; top: 12px; right: 14px; display: flex; gap: 6px; z-index: 6; }
   #tools button, #panelHead button, #panelHead select { border: 1px solid var(--border); background: var(--bg-side); color: var(--text);
@@ -103,6 +109,7 @@
   .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--border); }
   .pager a { text-decoration: none; border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; }
   #error { color: var(--warning); }
+  .callout-question { --c: var(--note); }
   .theory-ref { font-size: .88rem; color: var(--muted); margin: -.4em 0 .8em; }
   a.to-panel::after { content: "⧉"; font-size: .8em; margin-left: .25em; opacity: .7; }
   .contact-form { display: grid; gap: 12px; max-width: 520px; margin: 1em 0; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-side); }
@@ -164,7 +171,7 @@
 </aside>
 <div id="layout">
   <nav id="side">
-    <h1>Matemáticas CCSS II <button id="pinSide" title="Ocultar el menú (vuelve con ☰)">«</button></h1>
+    <h1>Matemáticas CCSS II <button id="pinSide" title="Ocultar el menú (vuelve con ☰)" aria-label="Ocultar el menú">«</button></h1>
     <div class="sub">2º Bachillerato · Comunidad de Madrid</div>
     <div id="docs"></div>
     <div class="group">En esta página</div>
@@ -362,16 +369,18 @@ $('#panelResize').addEventListener('pointerdown', e => {
   window.addEventListener('pointerup', up, { once: true });
 });
 
-// Medium screens with the panel open: ☰ shows the menu beside the theory, « hides it (remembered per viewer).
-const setPin = on => {
-  document.body.classList.toggle('pin-side', on);
-  try { localStorage.setItem('pinSide', on ? '1' : '0'); } catch (e) {}
+// Menu on computers: « hides it and ☰ shows it, with or without the panel (remembered per viewer).
+// Until the reader chooses, it is shown, except on medium screens with the panel open.
+const setMenu = shown => {
+  document.body.classList.toggle('pin-side', shown);
+  document.body.classList.toggle('side-collapsed', !shown);
+  try { localStorage.setItem('menu', shown ? 'shown' : 'hidden'); } catch (e) {}
 };
-try { setPin(localStorage.getItem('pinSide') === '1'); } catch (e) {}
-$('#pinSide').onclick = () => setPin(false);
+try { const m = localStorage.getItem('menu'); if (m) setMenu(m === 'shown'); } catch (e) {}
+$('#pinSide').onclick = () => setMenu(false);
 
 // On phones ☰ slides the menu over the page; on larger screens it makes room for it.
-$('#menu').onclick = () => matchMedia('(max-width: 860px)').matches ? $('#side').classList.toggle('open') : setPin(true);
+$('#menu').onclick = () => matchMedia('(max-width: 860px)').matches ? $('#side').classList.toggle('open') : setMenu(true);
 $('#theme').onclick = () => {
   const dark = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() === '#16181d';
   const t = dark ? 'light' : 'dark';
