@@ -1,10 +1,5 @@
 # Funciones — Teoría (2º Bach. CC. SS., Madrid)
 
-> [!info] Cómo usar este documento
-> Documento de **consulta rápida**. Cada idea aparece en lenguaje natural 🗣️ y en lenguaje matemático 🧮.
-> **Convenio de curvatura** (el de tus apuntes): $f''>0 \Rightarrow$ **cóncava ◡** · $f''<0 \Rightarrow$ **convexa ◠**.
-> ⚠️ Algunos libros lo llaman al revés. Si dudas en el examen, **dibuja el símbolo ◡ / ◠** al lado de la palabra.
-
 **Índice**
 - [[#1. Dominio y puntos de corte]]
 - [[#2. Límites]]
@@ -23,7 +18,8 @@
 
 ## 1. Dominio y puntos de corte
 
-🗣️ **Dominio** = los valores de $x$ que puedo meter en la función.  🧮 $\text{Dom}(f)=\{x\in\mathbb{R} : f(x) \text{ existe}\}$
+🗣️ **Dominio** = los valores de $x$ que puedo meter en la función.
+🧮 $\text{Dom}(f)=\{x\in\mathbb{R} : f(x) \text{ existe}\}$
 
 | Tipo de función | Problema ❌ | Condición ✅ | Dominio |
 |---|---|---|---|
@@ -38,27 +34,27 @@
 > Ej.: en $\frac{1}{x+2}$ definida solo para $x>0$, el $x=-2$ **no molesta**.
 
 > [!note] Contexto
-> En problemas reales el dominio se recorta: tiempo $t\ge 0$, unidades producidas $x\geq0$, etc.
+> En problemas reales el dominio se recorta siguiendo el enunciado o el sistema común: distancias $x\ge 0$, unidades producidas $x\geq0$, etc.
 
 **Puntos de corte**
 
 | 🗣️ Pregunta | 🧮 Qué hago | Resultado |
 |---|---|---|
-| ¿Dónde corta al eje X (abscisas)? | resuelvo $f(x)=0$ | puntos $(x_0,\,0)$ |
-| ¿Dónde corta al eje Y (ordenadas)? | calculo $f(0)$ (si $0\in\text{Dom}$) | punto $(0,\,f(0))$ |
+| ¿Dónde corta al eje X (abscisas)? | resuelvo $f(x)=0$ | puntos $(x_0\,0)$ |
+| ¿Dónde corta al eje Y (ordenadas)? | calculo $f(0)$ (si $0\in\text{Dom}$) | punto $(0\,f(0))$ |
 
 En funciones a trozos: **comprobar que la solución pertenece al intervalo del trozo**; si no, se descarta.
 
 ---
 
 ## 2. Límites
-
-🗣️ $\lim\limits_{x\to a} f(x)=L$: "cuando $x$ se acerca a $a$, $f(x)$ se acerca a $L$".
+🧮 $\lim\limits_{x\to a} f(x)=L$
+🗣️ "cuando $x$ se acerca a $a$, $f(x)$ se acerca a $L$".
 
 **Límites laterales**: $\lim\limits_{x\to a^-}$ (por la izquierda, valores $<a$) y $\lim\limits_{x\to a^+}$ (por la derecha, $>a$).
-El límite existe $\iff$ los dos laterales existen y son iguales.
+El límite existe si los dos laterales existen y son iguales.
 
-**Resultados "operativos"**
+**Resultados**
 
 | Expresión | Resultado | Cómo saber el signo |
 |---|---|---|
@@ -80,24 +76,22 @@ El límite existe $\iff$ los dos laterales existen y son iguales.
 
 ## 3. Asíntotas
 
-🗣️ Una asíntota es una **recta a la que la gráfica se acerca cada vez más** sin llegar a "despegarse".
+🗣️ Una asíntota es una **recta a la que la gráfica se acerca cada vez más** sin llegar a tocarla.
 
 | Tipo | 🗣️ Idea | 🧮 Condición | Dónde buscar |
 |---|---|---|---|
-| **Vertical (AV)** $x=a$ | la gráfica se dispara hacia $\pm\infty$ cerca de $a$ | $\lim\limits_{x\to a^\pm} f(x)=\pm\infty$ | puntos fuera del dominio, bordes del dominio, uniones de trozos |
-| **Horizontal (AH)** $y=k$ | a lo lejos, la gráfica se aplana hacia la altura $k$ | $\lim\limits_{x\to\pm\infty} f(x)=k$ (número) | en $+\infty$ y en $-\infty$ **por separado** |
-| **Oblicua (AO)** $y=mx+n$ | a lo lejos, la gráfica se pega a una recta inclinada | $m=\lim\limits_{x\to\pm\infty}\dfrac{f(x)}{x}$ ($m\neq0$, finito) · $n=\lim\limits_{x\to\pm\infty}\big(f(x)-mx\big)$ | solo donde **no** hay AH |
+| **Vertical (AV)** $x=a$ | la gráfica se va hacia $\pm\infty$ cerca de $a$ | $\lim\limits_{x\to a^\pm} f(x)=\pm\infty$ | puntos fuera del dominio, bordes del dominio, uniones de trozos |
+| **Horizontal (AH)** $y=k$ | la gráfica se acerca a $k$ hacia el infinito | $\lim\limits_{x\to\pm\infty} f(x)=k$ (número) | en $+\infty$ y en $-\infty$ **por separado** |
+| **Oblicua (AO)** $y=mx+n$ | la gráfica se acerca a una recta inclinada hacia el infinito | $m=\lim\limits_{x\to\pm\infty}\dfrac{f(x)}{x}$ ($m\neq0$, finito) · $n=\lim\limits_{x\to\pm\infty}\big(f(x)-mx\big)$ | solo donde **no** hay AH |
 
 **Qué significa cada resultado del límite**
 
 | Límite | Si da un número | Si da $+\infty$ | Si da $-\infty$ |
 |---|---|---|---|
-| $x\to\pm\infty$ | **hay AH** | no hay AH, la función sube | no hay AH, la función baja |
-| $x\to a$ | no hay AV, la función se acerca a ese valor | **hay AV**, la función sube | **hay AV**, la función baja |
+| AV: $x\to a$ | no hay AV, la función se acerca a ese valor | **hay AV** | **hay AV** |
+| AH: $x\to\pm\infty$ | **hay AH** | no hay AH, la función sube | no hay AH, la función baja |
 
 > [!tip] Trucos
-> - Racional $\frac{P}{Q}$: AH si grado $P\leq$ grado $Q$; AO si grado $P=$ grado $Q+1$ (se obtiene **dividiendo** $P$ entre $Q$: el cociente es la AO).
-> - **Posición** respecto a la asíntota: signo de $f(x)-(\text{asíntota})$.
 > - Una función puede tener **AH distinta** en $+\infty$ y en $-\infty$.
 
 ---
@@ -110,7 +104,7 @@ El límite existe $\iff$ los dos laterales existen y son iguales.
 
 | | Condición | 🗣️ |
 |---|---|---|
-| 1 | $f(a)$ existe | el punto está |
+| 1 | $f(a)$ existe | el punto existe |
 | 2 | $\lim\limits_{x\to a^-}f(x)=\lim\limits_{x\to a^+}f(x)$ (finito) | la gráfica llega a la misma altura por los dos lados |
 | 3 | $\lim\limits_{x\to a}f(x)=f(a)$ | y esa altura es la del punto |
 
@@ -121,8 +115,8 @@ Las funciones elementales (polinómicas, racionales, raíces, exponenciales, log
 
 | Tipo | 🧮 Qué pasa | 🗣️ Dibujo |
 |---|---|---|
-| **Evitable** | laterales iguales y finitos, pero $\neq f(a)$ o $f(a)$ no existe | "agujero" en la gráfica |
-| **Inevitable de salto finito** | laterales finitos pero distintos | "escalón" |
+| **Evitable** | límites laterales iguales finitos (números), pero $\neq f(a)$ o $f(a)$ no existe | "agujero" en la gráfica |
+| **Inevitable de salto finito** | límites laterales finitos (números) pero distintos | "escalón" |
 | **Inevitable de salto infinito** | algún lateral es $\pm\infty$ | asíntota vertical |
 
 **Pasos**: 1) dominio → 2) estudiar puntos sospechosos → 3) concluir: "$f$ es continua en … y tiene discontinuidad … en $x=$ …".
@@ -131,13 +125,8 @@ Las funciones elementales (polinómicas, racionales, raíces, exponenciales, log
 
 ## 5. Derivadas
 
-🗣️ $f'(a)$ = **pendiente de la gráfica en $a$** = velocidad a la que cambia $f$ en ese instante (**tasa de variación instantánea**).
-🧮 $f'(a)=\lim\limits_{h\to0}\dfrac{f(a+h)-f(a)}{h}$
-
-> [!tip] Si el enunciado te da $f'(x)$ en vez de $f(x)$
-> - Para **monotonía y extremos** no necesitas $f$: estudia directamente el signo de la $f'$ que te dan. Para la $y$ del extremo sí necesitas $f$.
-> - Para **curvatura**, deriva la $f'$ que te dan y obtienes $f''$.
-> - Para **obtener $f$** hay que buscar una primitiva, $f(x)=\int f'(x)\,dx + C$, y calcular $C$ con un punto por el que pase. Esto es del bloque de integrales.
+🗣️ La derivada nos habla de cómo varía el valor de nuestra función.
+🧮 $f'(a)$ = **pendiente de la gráfica en $a$** = velocidad a la que cambia $f$ en ese instante (**tasa de variación instantánea**).
 
 **Tabla de derivadas** (con regla de la cadena: $u=u(x)$)
 
@@ -223,6 +212,9 @@ Las funciones elementales (polinómicas, racionales, raíces, exponenciales, log
 > Un punto de inflexión es donde la función **crece (o decrece) más rápido**: allí $f'$ alcanza su máximo o mínimo.
 > Si la curvatura cambia en un punto que **no está en el dominio**, **no** hay punto de inflexión.
 
+> [!info] **Convenio de curvatura** (el de tus apuntes): $f''>0 \Rightarrow$ **cóncava ◡** · $f''<0 \Rightarrow$ **convexa ◠**.
+> ⚠️ Algunos libros lo llaman al revés. Si dudas en el examen, **dibuja el símbolo ◡ / ◠** al lado de la palabra.
+
 ---
 
 ## 9. Recta tangente
@@ -265,6 +257,11 @@ $$y-f(a)=f'(a)\,(x-a)$$
 7. **Responder a la pregunta con una frase** y unidades.
 
 ---
+
+> [!tip] Si el enunciado te da $f'(x)$ en vez de $f(x)$
+> - Para **monotonía y extremos** no necesitas $f$: estudia directamente el signo de la $f'$ que te dan. Para la $y$ del extremo sí necesitas $f$.
+> - Para **curvatura**, deriva la $f'$ que te dan y obtienes $f''$.
+> - Para **obtener $f$** hay que buscar una primitiva, $f(x)=\int f'(x)\,dx + C$, y calcular $C$ con un punto por el que pase. Esto es del bloque de integrales.
 
 ## 11. Ejercicios con parámetros
 
