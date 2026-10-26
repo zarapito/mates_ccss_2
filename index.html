@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apuntes de Matemáticas CCSS II</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%231c64c8'/><text x='50' y='72' font-size='64' font-family='Georgia,serif' font-style='italic' fill='white' text-anchor='middle'>f</text></svg>">
 <style>
   :root {
     --bg: #ffffff; --bg-side: #f6f7f9; --text: #1f2328; --muted: #59636e; --border: #d8dee4;
@@ -99,8 +99,6 @@
   .callout-title { font-weight: 700; color: var(--c); margin-bottom: .3em; }
   .callout-info { --c: var(--info); } .callout-tip { --c: var(--tip); } .callout-note { --c: var(--note); } .callout-warning { --c: var(--warning); }
   .callout-title::before { margin-right: .4em; }
-  .callout-info .callout-title::before { content: "ℹ️"; } .callout-tip .callout-title::before { content: "💡"; }
-  .callout-note .callout-title::before { content: "📝"; } .callout-warning .callout-title::before { content: "⚠️"; }
   li.task { list-style: none; } li.task input { margin-right: .5em; }
   .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--border); }
   .pager a { text-decoration: none; border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; }
@@ -143,7 +141,7 @@
 <body>
 <div id="tools">
   <button id="panelBtn" title="Abrir/cerrar panel lateral (p. ej. ejercicios junto a la teoría)">⧉ Panel</button>
-  <button id="theme" title="Cambiar tema claro/oscuro">🌓</button>
+  <button id="theme" title="Cambiar tema claro/oscuro">◐</button>
 </div>
 <aside id="panel" hidden>
   <div id="panelResize" title="Arrastra para cambiar el ancho"></div>
@@ -156,7 +154,7 @@
 </aside>
 <div id="layout">
   <nav id="side">
-    <h1>📐 Matemáticas CCSS II <button id="pinSide" title="Ocultar el menú (vuelve con ☰)">«</button></h1>
+    <h1>Matemáticas CCSS II <button id="pinSide" title="Ocultar el menú (vuelve con ☰)">«</button></h1>
     <div class="sub">2º Bachillerato · Comunidad de Madrid</div>
     <div id="docs"></div>
     <div class="group">En esta página</div>
@@ -168,16 +166,17 @@
   </div>
 </div>
 <script>
-// ====== CONFIGURACIÓN: añade aquí nuevos documentos (nombre del .md dentro de /apuntes) ======
+// ====== CONFIGURACIÓN: un bloque por carpeta dentro de /apuntes (sus imágenes, en <carpeta>/img) ======
 const SECTIONS = [
-  { group: 'Inicio', docs: ['Inicio'] },
-  { group: 'Funciones', docs: ['1 - Teoría Funciones', '2 - Ejercicios Funciones', '3 - Soluciones Funciones'] },
+  { group: 'Inicio', folder: '', docs: ['Inicio'] },
+  { group: 'Funciones', folder: 'Funciones', docs: ['1 - Teoría Funciones', "Tabla f, f' y f''", '2 - Ejercicios Funciones', '3 - Soluciones Funciones'] },
 ];
-const FOLDER = 'apuntes/';
-const IMG_FOLDER = 'apuntes/img/';
-// ===========================================================================================
+const ROOT = 'apuntes/';
+// =====================================================================================================
 
 const ALL = SECTIONS.flatMap(s => s.docs);
+const FOLDER_OF = Object.fromEntries(SECTIONS.flatMap(s => s.docs.map(d => [d, s.folder])));
+const dirOf = doc => ROOT + (FOLDER_OF[doc] ? encodeURIComponent(FOLDER_OF[doc]) + '/' : '');
 const $ = s => document.querySelector(s);
 const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
   .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
@@ -212,7 +211,7 @@ function preprocess(md, doc) {
   md = md.replace(/\$\$[\s\S]+?\$\$/g, keep).replace(/\$[^$\n]+?\$/g, keep);
   // embeds ![[file.svg|width]]
   md = md.replace(/!\[\[([^\]|]+?)(?:\|(\d+))?\]\]/g, (_, f, w) =>
-    `<img src="${IMG_FOLDER}${encodeURI(f.trim())}" alt="${esc(f)}"${w ? ` style="width:${w}px"` : ''}>`);
+    `<img src="${dirOf(doc)}img/${encodeURIComponent(f.trim())}" alt="${esc(f)}"${w ? ` style="width:${w}px"` : ''}>`);
   // links [[Doc#Heading|alias]]
   md = md.replace(/\[\[([^\]|#]*)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/g, (_, d, h, a) => {
     const target = d.trim() || doc;
@@ -238,7 +237,7 @@ function postprocess(el, math, prefix) {
 async function renderDoc(doc, el, prefix) {
   try {
     // no-cache: revalidate so edits uploaded to GitHub show up without a hard refresh.
-    const res = await fetch(FOLDER + encodeURIComponent(doc) + '.md', { cache: 'no-cache' });
+    const res = await fetch(dirOf(doc) + encodeURIComponent(doc) + '.md', { cache: 'no-cache' });
     if (!res.ok) throw new Error(res.status);
     const { md, math } = preprocess(await res.text(), doc);
     el.innerHTML = marked.parse(md, { gfm: true, breaks: true, headerIds: false, mangle: false });
