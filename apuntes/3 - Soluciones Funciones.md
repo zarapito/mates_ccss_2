@@ -1,7 +1,7 @@
 # Funciones — Soluciones paso a paso
 
 > [!info] Cómo leer las soluciones
-> - *En cursiva*: lo que piensa el alumno. Por qué se hace cada paso (**no se escribe en el examen**).
+> - *En cursiva*: Por qué se hace cada paso (**no se escribe en el examen**).
 > - Bloques matemáticos: el desarrollo que **sí** se escribe.
 > - **✍️ Respuesta:** el texto final que hay que escribir en el examen.
 >
