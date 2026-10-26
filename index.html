@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apuntes de Matemáticas CCSS II</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📐</text></svg>">
+<style>
+  :root {
+    --bg: #ffffff; --bg-side: #f6f7f9; --text: #1f2328; --muted: #59636e; --border: #d8dee4;
+    --accent: #1c64c8; --code-bg: #f2f4f7; --table-head: #eef1f5;
+    --info: #1c7ed6; --tip: #2b8a3e; --note: #6741d9; --warning: #e8590c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16181d; --bg-side: #1d2027; --text: #e6e8eb; --muted: #9aa4b1; --border: #343a46;
+      --accent: #6ea8fe; --code-bg: #252a33; --table-head: #232833;
+      --info: #4dabf7; --tip: #51cf66; --note: #9775fa; --warning: #ff922b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16181d; --bg-side: #1d2027; --text: #e6e8eb; --muted: #9aa4b1; --border: #343a46;
+    --accent: #6ea8fe; --code-bg: #252a33; --table-head: #232833;
+    --info: #4dabf7; --tip: #51cf66; --note: #9775fa; --warning: #ff922b;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); }
+  body { font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  a { color: var(--accent); }
+  #layout { display: flex; min-height: 100vh; }
+  #side { width: 280px; flex-shrink: 0; background: var(--bg-side); border-right: 1px solid var(--border);
+          position: sticky; top: 0; height: 100vh; overflow-y: auto; padding: 20px 16px; }
+  #side h1 { font-size: 1.05rem; margin: 0 0 4px; }
+  #side .sub { color: var(--muted); font-size: .85rem; margin-bottom: 16px; }
+  #side .group { font-size: .75rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 18px 0 6px; }
+  #side a { display: block; text-decoration: none; color: var(--text); padding: 4px 8px; border-radius: 6px; font-size: .93rem; }
+  #side a:hover { background: var(--border); }
+  #side a.active { background: var(--accent); color: #fff; }
+  #side #toc a { font-size: .85rem; color: var(--muted); padding: 2px 8px 2px 16px; }
+  #side #toc a:hover { color: var(--text); }
+  #main { flex: 1; min-width: 0; padding: 32px 48px 80px; }
+  #content { max-width: 860px; margin: 0 auto; }
+  #topbar { display: none; }
+  #theme { position: fixed; top: 12px; right: 14px; border: 1px solid var(--border); background: var(--bg-side);
+           color: var(--text); border-radius: 8px; padding: 4px 9px; cursor: pointer; font-size: 1rem; z-index: 5; }
+  h1, h2, h3 { line-height: 1.25; scroll-margin-top: 16px; }
+  h1 { font-size: 1.9rem; margin-top: 0; }
+  h2 { font-size: 1.45rem; margin-top: 2.2em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
+  h3 { font-size: 1.15rem; margin-top: 1.8em; }
+  hr { border: 0; border-top: 1px solid var(--border); margin: 2em 0; }
+  em { color: var(--muted); }
+  .table-wrap { overflow-x: auto; margin: 1em 0; }
+  table { border-collapse: collapse; font-size: .95rem; }
+  th, td { border: 1px solid var(--border); padding: 6px 10px; vertical-align: middle; }
+  th { background: var(--table-head); }
+  code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  img { max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 8px; display: block; margin: 1em auto; }
+  mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+  blockquote { margin: 1.2em 0; padding: .6em 1em; border-left: 4px solid var(--border); background: var(--bg-side); border-radius: 0 8px 8px 0; }
+  blockquote > :first-child { margin-top: 0; } blockquote > :last-child { margin-bottom: 0; }
+  .callout { --c: var(--info); border-left-color: var(--c); background: color-mix(in srgb, var(--c) 9%, var(--bg)); }
+  .callout-title { font-weight: 700; color: var(--c); margin-bottom: .3em; }
+  .callout-info { --c: var(--info); } .callout-tip { --c: var(--tip); } .callout-note { --c: var(--note); } .callout-warning { --c: var(--warning); }
+  .callout-title::before { margin-right: .4em; }
+  .callout-info .callout-title::before { content: "ℹ️"; } .callout-tip .callout-title::before { content: "💡"; }
+  .callout-note .callout-title::before { content: "📝"; } .callout-warning .callout-title::before { content: "⚠️"; }
+  li.task { list-style: none; } li.task input { margin-right: .5em; }
+  .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--border); }
+  .pager a { text-decoration: none; border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; }
+  #error { color: var(--warning); }
+  @media (max-width: 860px) {
+    #layout { display: block; }
+    #side { position: fixed; inset: 0 auto 0 0; width: 82%; max-width: 320px; transform: translateX(-100%); transition: transform .2s; z-index: 10; }
+    #side.open { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.3); }
+    #topbar { display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 4; background: var(--bg);
+              border-bottom: 1px solid var(--border); padding: 10px 16px; font-weight: 600; }
+    #topbar button { border: 1px solid var(--border); background: var(--bg-side); color: var(--text); border-radius: 8px; padding: 4px 10px; font-size: 1.1rem; }
+    #main { padding: 20px 16px 60px; }
+    #theme { top: 9px; }
+    h1 { font-size: 1.55rem; }
+    th, td { min-width: 120px; font-size: .9rem; }
+  }
+  @media print {
+    #side, #topbar, #theme, .pager { display: none !important; }
+    #main { padding: 0; } h2 { break-after: avoid; } img, table, blockquote { break-inside: avoid; }
+  }
+</style>
+<script>
+  // Theme stored per viewer; optional.
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  window.MathJax = {
+    tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']], processEscapes: true },
+    options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'] },
+    startup: { typeset: false }
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/marked@4.3.0/marked.min.js"></script>
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+</head>
+<body>
+<button id="theme" title="Cambiar tema claro/oscuro">🌓</button>
+<div id="layout">
+  <nav id="side">
+    <h1>📐 Matemáticas CCSS II</h1>
+    <div class="sub">2º Bachillerato · Comunidad de Madrid</div>
+    <div id="docs"></div>
+    <div class="group">En esta página</div>
+    <div id="toc"></div>
+  </nav>
+  <div id="main">
+    <div id="topbar"><button id="menu" aria-label="Menú">☰</button><span id="toptitle">Matemáticas CCSS II</span></div>
+    <article id="content">Cargando…</article>
+  </div>
+</div>
+<script>
+// ====== CONFIGURACIÓN: añade aquí nuevos documentos (nombre del .md dentro de /apuntes) ======
+const SECTIONS = [
+  { group: 'Inicio', docs: ['Inicio'] },
+  { group: 'Funciones', docs: ['1 - Teoría Funciones', '2 - Ejercicios Funciones', '3 - Soluciones Funciones'] },
+];
+const FOLDER = 'apuntes/';
+const IMG_FOLDER = 'apuntes/img/';
+// ===========================================================================================
+
+const ALL = SECTIONS.flatMap(s => s.docs);
+const $ = s => document.querySelector(s);
+const slug = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase()
+  .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const href = (doc, h) => '#doc=' + encodeURIComponent(doc) + (h ? '&h=' + slug(h) : '');
+const label = d => d.replace(/^\d+\s*-\s*/, '');
+
+function renderNav(current) {
+  $('#docs').innerHTML = SECTIONS.map(s =>
+    `<div class="group">${esc(s.group)}</div>` +
+    s.docs.map(d => `<a href="${href(d)}" class="${d === current ? 'active' : ''}">${esc(label(d))}</a>`).join('')
+  ).join('');
+}
+
+// Convert Obsidian-flavoured markdown (math, wikilinks, callouts) into something marked can render.
+function preprocess(md, doc) {
+  const math = [];
+  const keep = m => { math.push(m); return `MATHPH${math.length - 1}X`; };
+  md = md.replace(/\$\$[\s\S]+?\$\$/g, keep).replace(/\$[^$\n]+?\$/g, keep);
+  // embeds ![[file.svg|width]]
+  md = md.replace(/!\[\[([^\]|]+?)(?:\|(\d+))?\]\]/g, (_, f, w) =>
+    `<img src="${IMG_FOLDER}${encodeURI(f.trim())}" alt="${esc(f)}"${w ? ` style="width:${w}px"` : ''}>`);
+  // links [[Doc#Heading|alias]]
+  md = md.replace(/\[\[([^\]|#]*)(?:#([^\]|]+))?(?:\|([^\]]+))?\]\]/g, (_, d, h, a) => {
+    const target = d.trim() || doc;
+    const text = a || (h ? (d.trim() ? `${label(target)} › ${h.trim()}` : h.trim()) : label(target));
+    return `[${text}](${href(target, h && h.trim())})`;
+  });
+  // callouts: "> [!type] Title"
+  md = md.replace(/^>\s*\[!(\w+)\][ \t]*(.*)$/gm, (_, t, title) =>
+    `> <div class="callout-title" data-type="${t.toLowerCase()}">${title || t}</div>\n>`);
+  return { md, math };
+}
+
+function postprocess(el, math) {
+  const restore = s => s.replace(/MATHPH(\d+)X/g, (_, i) => esc(math[+i]));
+  el.innerHTML = restore(el.innerHTML);
+  el.querySelectorAll('.callout-title').forEach(t => t.closest('blockquote')?.classList.add('callout', 'callout-' + t.dataset.type));
+  el.querySelectorAll('table').forEach(t => { const w = document.createElement('div'); w.className = 'table-wrap'; t.replaceWith(w); w.appendChild(t); });
+  el.querySelectorAll('li input[type=checkbox]').forEach(i => i.closest('li').classList.add('task'));
+  el.querySelectorAll('h1,h2,h3').forEach(h => { h.id = slug(h.textContent); });
+  el.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
+}
+
+async function show() {
+  const p = new URLSearchParams(location.hash.slice(1));
+  const doc = ALL.includes(p.get('doc')) ? p.get('doc') : ALL[0];
+  renderNav(doc);
+  $('#side').classList.remove('open');
+  const el = $('#content');
+  try {
+    const res = await fetch(FOLDER + encodeURIComponent(doc) + '.md');
+    if (!res.ok) throw new Error(res.status);
+    const { md, math } = preprocess(await res.text(), doc);
+    el.innerHTML = marked.parse(md, { gfm: true, breaks: true, headerIds: false, mangle: false });
+    postprocess(el, math);
+  } catch (e) {
+    el.innerHTML = `<p id="error">No se pudo cargar «${esc(doc)}» (${esc(String(e.message || e))}).</p>`;
+    return;
+  }
+  const i = ALL.indexOf(doc);
+  const prev = ALL[i - 1], next = ALL[i + 1];
+  el.insertAdjacentHTML('beforeend', `<nav class="pager">${prev ? `<a href="${href(prev)}">← ${esc(label(prev))}</a>` : '<span></span>'}${next ? `<a href="${href(next)}">${esc(label(next))} →</a>` : ''}</nav>`);
+  $('#toc').innerHTML = [...el.querySelectorAll('h2')].map(h => `<a href="${href(doc, h.textContent)}">${esc(h.textContent)}</a>`).join('');
+  document.title = label(doc) + ' · Matemáticas CCSS II';
+  $('#toptitle').textContent = label(doc);
+  const waitMJ = () => window.MathJax && MathJax.typesetPromise ? MathJax.typesetPromise([el]) : new Promise(r => setTimeout(r, 100)).then(waitMJ);
+  await waitMJ();
+  const h = p.get('h');
+  const target = h && document.getElementById(h);
+  if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+}
+
+$('#menu').onclick = () => $('#side').classList.toggle('open');
+$('#theme').onclick = () => {
+  const dark = getComputedStyle(document.documentElement).getPropertyValue('--bg').trim() === '#16181d';
+  const t = dark ? 'light' : 'dark';
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem('theme', t); } catch (e) {}
+};
+window.addEventListener('hashchange', show);
+show();
+</script>
+</body>
+</html>
