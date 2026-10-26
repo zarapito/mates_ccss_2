@@ -39,12 +39,44 @@
   #side #toc a { font-size: .85rem; color: var(--muted); padding: 2px 8px 2px 16px; }
   #side #toc a:hover { color: var(--text); }
   #side #toc a.part { color: var(--text); font-weight: 600; padding-left: 8px; margin-top: 8px; }
-  #content h1 ~ h1 { font-size: 1.6rem; margin-top: 2.4em; padding: .4em .6em; border-radius: 8px; background: var(--bg-side); border-left: 5px solid var(--accent); }
+  .doc h1 ~ h1 { font-size: 1.6rem; margin-top: 2.4em; padding: .4em .6em; border-radius: 8px; background: var(--bg-side); border-left: 5px solid var(--accent); }
   #main { flex: 1; min-width: 0; padding: 32px 48px 80px; }
   #content { max-width: 860px; margin: 0 auto; }
-  #topbar { display: none; }
-  #theme { position: fixed; top: 12px; right: 14px; border: 1px solid var(--border); background: var(--bg-side);
-           color: var(--text); border-radius: 8px; padding: 4px 9px; cursor: pointer; font-size: 1rem; z-index: 5; }
+  #topbar { display: none; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 4; background: var(--bg);
+            border-bottom: 1px solid var(--border); padding: 10px 16px; font-weight: 600; }
+  #topbar button { border: 1px solid var(--border); background: var(--bg-side); color: var(--text); border-radius: 8px; padding: 4px 10px; font-size: 1.1rem; cursor: pointer; }
+  /* Medium screens with the panel open: the menu folds behind ☰ so the theory keeps a readable width */
+  @media (min-width: 861px) and (max-width: 1400px) {
+    body.has-panel #layout { display: block; }
+    body.has-panel #side { position: fixed; inset: 0 auto 0 0; width: 300px; transform: translateX(-100%); transition: transform .2s; z-index: 10; }
+    body.has-panel #side.open { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.3); }
+    body.has-panel #topbar { display: flex; margin: -32px -48px 24px; }
+    body.has-panel #content :is(h1, h2, h3) { scroll-margin-top: 70px; }
+  }
+  #tools { position: fixed; top: 12px; right: 14px; display: flex; gap: 6px; z-index: 6; }
+  #tools button, #panelHead button, #panelHead select { border: 1px solid var(--border); background: var(--bg-side); color: var(--text);
+           border-radius: 8px; padding: 4px 9px; cursor: pointer; font: inherit; font-size: .92rem; }
+  #panelBtn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+  /* Side panel: a second document that stays open while the main view changes */
+  :root { --pw: clamp(340px, 40vw, 560px); }
+  #panel { position: fixed; top: 0; right: 0; bottom: 0; width: var(--pw); z-index: 7; display: flex; flex-direction: column;
+           background: var(--bg); border-left: 1px solid var(--border); box-shadow: -6px 0 24px rgba(0,0,0,.08); }
+  #panel[hidden] { display: none; }
+  #panelHead { display: flex; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--border); background: var(--bg-side); }
+  #panelHead select { flex: 1; min-width: 0; }
+  #panelContent { flex: 1; overflow-y: auto; padding: 16px 22px 60px; font-size: .95rem; }
+  #panelContent h1 { font-size: 1.4rem; }
+  #panelContent h1 ~ h1 { font-size: 1.25rem; }
+  #side .row { display: flex; align-items: center; gap: 2px; }
+  #side .row a { flex: 1; }
+  #side .row button { border: 0; background: none; color: var(--muted); cursor: pointer; border-radius: 6px; padding: 3px 7px; font-size: .9rem; }
+  #side .row button:hover { background: var(--border); color: var(--text); }
+  #side .row button.on { color: var(--accent); }
+  #panelResize { position: absolute; left: -4px; top: 0; bottom: 0; width: 8px; cursor: col-resize; z-index: 1; }
+  #panelResize:hover, body.resizing #panelResize { background: var(--accent); opacity: .5; }
+  body.resizing { user-select: none; cursor: col-resize; }
+  body.has-panel #main { margin-right: var(--pw); }
+  body.has-panel #tools { right: calc(var(--pw) + 14px); }
   h1, h2, h3 { line-height: 1.25; scroll-margin-top: 16px; }
   h1 { font-size: 1.9rem; margin-top: 0; }
   h2 { font-size: 1.45rem; margin-top: 2.2em; padding-bottom: .3em; border-bottom: 1px solid var(--border); }
@@ -74,16 +106,22 @@
     #layout { display: block; }
     #side { position: fixed; inset: 0 auto 0 0; width: 82%; max-width: 320px; transform: translateX(-100%); transition: transform .2s; z-index: 10; }
     #side.open { transform: none; box-shadow: 0 0 40px rgba(0,0,0,.3); }
-    #topbar { display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 4; background: var(--bg);
-              border-bottom: 1px solid var(--border); padding: 10px 16px; font-weight: 600; }
-    #topbar button { border: 1px solid var(--border); background: var(--bg-side); color: var(--text); border-radius: 8px; padding: 4px 10px; font-size: 1.1rem; }
+    #topbar { display: flex; margin: -20px -16px 16px; }
+    #content :is(h1, h2, h3) { scroll-margin-top: 70px; }
     #main { padding: 20px 16px 60px; }
-    #theme { top: 9px; }
+    #tools { top: 9px; }
+    body.has-panel #tools { right: 14px; }
     h1 { font-size: 1.55rem; }
     th, td { min-width: 120px; font-size: .9rem; }
+    /* On phones the panel is a bottom sheet: theory on top, exercises below */
+    #panel { top: auto; left: 0; width: 100%; height: 55vh; border-left: 0; border-top: 2px solid var(--accent); box-shadow: 0 -8px 30px rgba(0,0,0,.2); }
+    #panelResize { display: none; }
+    #panelContent { padding: 12px 16px 40px; }
+    body.has-panel #main { margin-right: 0; padding-bottom: 58vh; }
   }
   @media print {
-    #side, #topbar, #theme, .pager { display: none !important; }
+    #side, #topbar, #tools, #panel, .pager { display: none !important; }
+    body.has-panel #main { margin-right: 0; }
     #main { padding: 0; } h2 { break-after: avoid; } img, table, blockquote { break-inside: avoid; }
   }
 </style>
@@ -100,7 +138,19 @@
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 </head>
 <body>
-<button id="theme" title="Cambiar tema claro/oscuro">🌓</button>
+<div id="tools">
+  <button id="panelBtn" title="Abrir/cerrar panel lateral (p. ej. ejercicios junto a la teoría)">⧉ Panel</button>
+  <button id="theme" title="Cambiar tema claro/oscuro">🌓</button>
+</div>
+<aside id="panel" hidden>
+  <div id="panelResize" title="Arrastra para cambiar el ancho"></div>
+  <div id="panelHead">
+    <select id="panelSelect" aria-label="Documento del panel"></select>
+    <button id="panelSwap" title="Intercambiar: llevar este documento a la vista principal">⇄</button>
+    <button id="panelClose" title="Cerrar panel">✕</button>
+  </div>
+  <article id="panelContent" class="doc"></article>
+</aside>
 <div id="layout">
   <nav id="side">
     <h1>📐 Matemáticas CCSS II</h1>
@@ -111,7 +161,7 @@
   </nav>
   <div id="main">
     <div id="topbar"><button id="menu" aria-label="Menú">☰</button><span id="toptitle">Matemáticas CCSS II</span></div>
-    <article id="content">Cargando…</article>
+    <article id="content" class="doc">Cargando…</article>
   </div>
 </div>
 <script>
@@ -132,10 +182,23 @@ const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&
 const href = (doc, h) => '#doc=' + encodeURIComponent(doc) + (h ? '&h=' + slug(h) : '');
 const label = d => d.replace(/^\d+\s*-\s*/, '');
 
-function renderNav(current) {
+// URL state: #doc=<main doc>&h=<heading>&panel=<side panel doc>
+const state = () => {
+  const p = new URLSearchParams(location.hash.slice(1));
+  return { doc: ALL.includes(p.get('doc')) ? p.get('doc') : ALL[0], h: p.get('h'), panel: ALL.includes(p.get('panel')) ? p.get('panel') : null };
+};
+function go({ doc, h, panel }) {
+  const p = new URLSearchParams();
+  p.set('doc', doc); if (h) p.set('h', h); if (panel) p.set('panel', panel);
+  const hash = '#' + p.toString().replace(/\+/g, '%20');
+  if (hash === location.hash) show(); else location.hash = hash;
+}
+
+function renderNav(current, panel) {
   $('#docs').innerHTML = SECTIONS.map(s =>
     `<div class="group">${esc(s.group)}</div>` +
-    s.docs.map(d => `<a href="${href(d)}" class="${d === current ? 'active' : ''}">${esc(label(d))}</a>`).join('')
+    s.docs.map(d => `<div class="row"><a href="${href(d)}" class="${d === current ? 'active' : ''}">${esc(label(d))}</a>` +
+      `<button data-panel="${esc(d)}" class="${d === panel ? 'on' : ''}" title="Abrir en el panel lateral">⧉</button></div>`).join('')
   ).join('');
 }
 
@@ -159,33 +222,61 @@ function preprocess(md, doc) {
   return { md, math };
 }
 
-function postprocess(el, math) {
+function postprocess(el, math, prefix) {
   const restore = s => s.replace(/MATHPH(\d+)X/g, (_, i) => esc(math[+i]));
   el.innerHTML = restore(el.innerHTML);
   el.querySelectorAll('.callout-title').forEach(t => t.closest('blockquote')?.classList.add('callout', 'callout-' + t.dataset.type));
   el.querySelectorAll('table').forEach(t => { const w = document.createElement('div'); w.className = 'table-wrap'; t.replaceWith(w); w.appendChild(t); });
   el.querySelectorAll('li input[type=checkbox]').forEach(i => i.closest('li').classList.add('task'));
-  el.querySelectorAll('h1,h2,h3').forEach(h => { h.id = slug(h.textContent); });
+  el.querySelectorAll('h1,h2,h3').forEach(h => { h.id = prefix + slug(h.textContent); });
   el.querySelectorAll('a[href^="http"]').forEach(a => { a.target = '_blank'; a.rel = 'noopener'; });
 }
 
-async function show() {
-  const p = new URLSearchParams(location.hash.slice(1));
-  const doc = ALL.includes(p.get('doc')) ? p.get('doc') : ALL[0];
-  renderNav(doc);
-  $('#side').classList.remove('open');
-  const el = $('#content');
+async function renderDoc(doc, el, prefix) {
   try {
     // no-cache: revalidate so edits uploaded to GitHub show up without a hard refresh.
     const res = await fetch(FOLDER + encodeURIComponent(doc) + '.md', { cache: 'no-cache' });
     if (!res.ok) throw new Error(res.status);
     const { md, math } = preprocess(await res.text(), doc);
     el.innerHTML = marked.parse(md, { gfm: true, breaks: true, headerIds: false, mangle: false });
-    postprocess(el, math);
+    postprocess(el, math, prefix);
+    return true;
   } catch (e) {
     el.innerHTML = `<p id="error">No se pudo cargar «${esc(doc)}» (${esc(String(e.message || e))}).</p>`;
-    return;
+    return false;
   }
+}
+const typeset = el => window.MathJax && MathJax.typesetPromise
+  ? MathJax.typesetPromise([el]) : new Promise(r => setTimeout(r, 100)).then(() => typeset(el));
+
+let shownDoc = null, shownPanel;
+async function show() {
+  const { doc, h, panel } = state();
+  renderNav(doc, panel);
+  $('#side').classList.remove('open');
+  const mainChanged = doc !== shownDoc, panelChanged = panel !== shownPanel;
+  shownDoc = doc; shownPanel = panel;
+  await Promise.all([mainChanged && renderMain(doc), panelChanged && renderPanel(panel)]);
+  const target = h && document.getElementById(h);
+  if (target) target.scrollIntoView(); else if (mainChanged) window.scrollTo(0, 0);
+}
+
+async function renderPanel(panel) {
+  document.body.classList.toggle('has-panel', !!panel);
+  $('#panel').hidden = !panel;
+  $('#panelBtn').classList.toggle('on', !!panel);
+  if (!panel) return;
+  try { localStorage.setItem('lastPanel', panel); } catch (e) {}
+  $('#panelSelect').innerHTML = SECTIONS.map(s => `<optgroup label="${esc(s.group)}">` +
+    s.docs.map(d => `<option value="${esc(d)}"${d === panel ? ' selected' : ''}>${esc(label(d))}</option>`).join('') + '</optgroup>').join('');
+  const el = $('#panelContent');
+  el.scrollTop = 0;
+  if (await renderDoc(panel, el, 'p-')) await typeset(el);
+}
+
+async function renderMain(doc) {
+  const el = $('#content');
+  if (!await renderDoc(doc, el, '')) return;
   const i = ALL.indexOf(doc);
   const prev = ALL[i - 1], next = ALL[i + 1];
   el.insertAdjacentHTML('beforeend', `<nav class="pager">${prev ? `<a href="${href(prev)}">← ${esc(label(prev))}</a>` : '<span></span>'}${next ? `<a href="${href(next)}">${esc(label(next))} →</a>` : ''}</nav>`);
@@ -194,12 +285,55 @@ async function show() {
     `<a href="${href(doc, h.textContent)}" class="${h.tagName === 'H1' ? 'part' : ''}">${esc(h.textContent)}</a>`).join('');
   document.title = label(doc) + ' · Matemáticas CCSS II';
   $('#toptitle').textContent = label(doc);
-  const waitMJ = () => window.MathJax && MathJax.typesetPromise ? MathJax.typesetPromise([el]) : new Promise(r => setTimeout(r, 100)).then(waitMJ);
-  await waitMJ();
-  const h = p.get('h');
-  const target = h && document.getElementById(h);
-  if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+  await typeset(el);
 }
+
+// Internal links keep the side panel open. A link inside the panel to its own document scrolls the panel.
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-panel]');
+  if (btn) { const s = state(); go({ ...s, h: null, panel: s.panel === btn.dataset.panel ? null : btn.dataset.panel }); return; }
+  const a = e.target.closest('a[href^="#doc="]');
+  if (!a || e.ctrlKey || e.metaKey || e.shiftKey || e.button) return;
+  e.preventDefault();
+  const t = new URLSearchParams(a.getAttribute('href').slice(1));
+  const s = state();
+  if (a.closest('#panel') && t.get('doc') === s.panel) {
+    const el = t.get('h') && document.getElementById('p-' + t.get('h'));
+    if (el) el.scrollIntoView(); else $('#panelContent').scrollTop = 0;
+    return;
+  }
+  go({ doc: t.get('doc'), h: t.get('h'), panel: s.panel });
+});
+
+$('#panelBtn').onclick = () => {
+  const s = state();
+  if (s.panel) return go({ ...s, h: null, panel: null });
+  let last = null;
+  try { last = localStorage.getItem('lastPanel'); } catch (e) {}
+  const fallback = ALL.find(d => /ejercicios/i.test(d) && d !== s.doc) || ALL.find(d => d !== s.doc);
+  go({ ...s, h: null, panel: ALL.includes(last) && last !== s.doc ? last : fallback });
+};
+$('#panelSelect').onchange = e => go({ ...state(), h: null, panel: e.target.value });
+$('#panelSwap').onclick = () => { const s = state(); go({ doc: s.panel, h: null, panel: s.doc }); };
+$('#panelClose').onclick = () => go({ ...state(), h: null, panel: null });
+
+// Drag the panel's left edge to resize it (width remembered per viewer).
+try { const w = localStorage.getItem('panelWidth'); if (w) document.documentElement.style.setProperty('--pw', w); } catch (e) {}
+$('#panelResize').addEventListener('pointerdown', e => {
+  e.preventDefault();
+  document.body.classList.add('resizing');
+  const move = ev => {
+    const w = Math.round(Math.min(Math.max(window.innerWidth - ev.clientX, 300), window.innerWidth * 0.7));
+    document.documentElement.style.setProperty('--pw', w + 'px');
+  };
+  const up = () => {
+    document.body.classList.remove('resizing');
+    window.removeEventListener('pointermove', move);
+    try { localStorage.setItem('panelWidth', getComputedStyle(document.documentElement).getPropertyValue('--pw').trim()); } catch (e) {}
+  };
+  window.addEventListener('pointermove', move);
+  window.addEventListener('pointerup', up, { once: true });
+});
 
 $('#menu').onclick = () => $('#side').classList.toggle('open');
 $('#theme').onclick = () => {
