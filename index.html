@@ -103,6 +103,8 @@
   .pager { display: flex; justify-content: space-between; gap: 12px; margin-top: 3em; padding-top: 1em; border-top: 1px solid var(--border); }
   .pager a { text-decoration: none; border: 1px solid var(--border); padding: 8px 14px; border-radius: 8px; }
   #error { color: var(--warning); }
+  .theory-ref { font-size: .88rem; color: var(--muted); margin: -.4em 0 .8em; }
+  a.to-panel::after { content: "⧉"; font-size: .8em; margin-left: .25em; opacity: .7; }
   .contact-form { display: grid; gap: 12px; max-width: 520px; margin: 1em 0; padding: 16px; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-side); }
   .contact-form label { display: grid; gap: 4px; font-weight: 600; font-size: .92rem; }
   .contact-form input, .contact-form textarea { font: inherit; font-weight: 400; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--text); }
@@ -195,11 +197,17 @@ const label = d => d.replace(/^\d+\s*-\s*/, '');
 // URL state: #doc=<main doc>&h=<heading>&panel=<side panel doc>
 const state = () => {
   const p = new URLSearchParams(location.hash.slice(1));
-  return { doc: ALL.includes(p.get('doc')) ? p.get('doc') : ALL[0], h: p.get('h'), panel: ALL.includes(p.get('panel')) ? p.get('panel') : null };
+  const panel = ALL.includes(p.get('panel')) ? p.get('panel') : null;
+  return { doc: ALL.includes(p.get('doc')) ? p.get('doc') : ALL[0], h: p.get('h'), panel, ph: panel && p.get('ph') };
 };
-function go({ doc, h, panel }) {
+// Scroll the side panel (not the page) to one of its headings.
+function scrollPanelTo(h) {
+  const pc = $('#panelContent'), el = h && document.getElementById('p-' + h);
+  if (el) pc.scrollTop += el.getBoundingClientRect().top - pc.getBoundingClientRect().top - 8; else pc.scrollTop = 0;
+}
+function go({ doc, h, panel, ph }) {
   const p = new URLSearchParams();
-  p.set('doc', doc); if (h) p.set('h', h); if (panel) p.set('panel', panel);
+  p.set('doc', doc); if (h) p.set('h', h); if (panel) p.set('panel', panel); if (panel && ph) p.set('ph', ph);
   const hash = '#' + p.toString().replace(/\+/g, '%20');
   if (hash === location.hash) show(); else location.hash = hash;
 }
@@ -261,7 +269,7 @@ const typeset = el => window.MathJax && MathJax.typesetPromise
 
 let shownDoc = null, shownPanel;
 async function show() {
-  const { doc, h, panel } = state();
+  const { doc, h, panel, ph } = state();
   renderNav(doc, panel);
   $('#side').classList.remove('open');
   const mainChanged = doc !== shownDoc, panelChanged = panel !== shownPanel;
@@ -269,6 +277,7 @@ async function show() {
   await Promise.all([mainChanged && renderMain(doc), panelChanged && renderPanel(panel)]);
   const target = h && document.getElementById(h);
   if (target) target.scrollIntoView(); else if (mainChanged) window.scrollTo(0, 0);
+  if (panel && (ph || panelChanged)) scrollPanelTo(ph);
   // Back from the contact form service (?_next=…&enviado=1): show the confirmation.
   const ok = document.getElementById('form-ok');
   if (ok) ok.hidden = !new URLSearchParams(location.hash.slice(1)).get('enviado');
@@ -290,6 +299,11 @@ async function renderPanel(panel) {
 async function renderMain(doc) {
   const el = $('#content');
   if (!await renderDoc(doc, el, '')) return;
+  el.querySelectorAll('a[href^="#doc="]').forEach(a => {
+    const t = new URLSearchParams(a.getAttribute('href').slice(1));
+    if (t.get('h') && t.get('doc') !== doc) { a.classList.add('to-panel'); a.title = 'Se abre en el panel lateral'; }
+  });
+  el.querySelectorAll('p').forEach(p => { if (/^Teoría:/.test(p.textContent)) p.classList.add('theory-ref'); });
   const i = ALL.indexOf(doc);
   const prev = ALL[i - 1], next = ALL[i + 1];
   el.insertAdjacentHTML('beforeend', `<nav class="pager">${prev ? `<a href="${href(prev)}">← ${esc(label(prev))}</a>` : '<span></span>'}${next ? `<a href="${href(next)}">${esc(label(next))} →</a>` : ''}</nav>`);
@@ -302,6 +316,7 @@ async function renderMain(doc) {
 }
 
 // Internal links keep the side panel open. A link inside the panel to its own document scrolls the panel.
+// A link in the main text to a section of *another* document opens that section in the panel.
 document.addEventListener('click', e => {
   const btn = e.target.closest('[data-panel]');
   if (btn) { const s = state(); go({ ...s, h: null, panel: s.panel === btn.dataset.panel ? null : btn.dataset.panel }); return; }
@@ -310,11 +325,8 @@ document.addEventListener('click', e => {
   e.preventDefault();
   const t = new URLSearchParams(a.getAttribute('href').slice(1));
   const s = state();
-  if (a.closest('#panel') && t.get('doc') === s.panel) {
-    const el = t.get('h') && document.getElementById('p-' + t.get('h'));
-    if (el) el.scrollIntoView(); else $('#panelContent').scrollTop = 0;
-    return;
-  }
+  if (a.closest('#panel') && t.get('doc') === s.panel) return scrollPanelTo(t.get('h'));
+  if (a.classList.contains('to-panel')) return go({ doc: s.doc, h: null, panel: t.get('doc'), ph: t.get('h') });
   go({ doc: t.get('doc'), h: t.get('h'), panel: s.panel });
 });
 

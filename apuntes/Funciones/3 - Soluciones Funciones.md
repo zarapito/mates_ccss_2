@@ -6,6 +6,8 @@ $$C(t)=\frac{a\,t}{t^2+9},\qquad t\geq 0,\ a>0$$
 
 ### a) Máximo a las 3 h y valor de $a$
 
+Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]] · [[1 - Teoría Funciones#11. Optimización|Optimización]]
+
 *Concentración máxima = máximo de la función: derivo e igualo a $0$, tratando $a$ como un número.*
 
 $$C'(t)=\frac{a\,(t^2+9)-a\,t\cdot 2t}{(t^2+9)^2}=\frac{a\,(9-t^2)}{(t^2+9)^2}$$
@@ -27,6 +29,8 @@ $$C(3)=\frac{3a}{9+9}=\frac{a}{6}=6,\quad\text{luego}\quad a=36$$
 
 ### b) Dominio, continuidad y derivabilidad
 
+Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]] · [[1 - Teoría Funciones#4. Continuidad|Continuidad]] · [[1 - Teoría Funciones#6. Derivabilidad|Derivabilidad]]
+
 $$t^2+9=0 \quad\text{da}\quad t^2=-9 \quad \text{(sin solución real)}$$
 
 *El denominador nunca se anula. En contexto, $t\geq0$.*
@@ -35,6 +39,8 @@ $$t^2+9=0 \quad\text{da}\quad t^2=-9 \quad \text{(sin solución real)}$$
 
 ### c) Concentración inicial y cuándo es nula
 
+Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]]
+
 *Al tomarlo: $t=0$. Nula: $C(t)=0$.*
 
 $$C(0)=\frac{0}{9}=0 \qquad\quad C(t)=0 \quad\text{solo si}\quad 36t=0,\ \text{es decir, } t=0$$
@@ -42,6 +48,8 @@ $$C(0)=\frac{0}{9}=0 \qquad\quad C(t)=0 \quad\text{solo si}\quad 36t=0,\ \text{e
 > **Respuesta:** Al tomar el medicamento la concentración es $0$ mg/l. No vuelve a ser nula, porque la única solución de $C(t)=0$ es $t=0$.
 
 ### d) Cuándo aumenta y cuándo disminuye
+
+Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]]
 
 *Es monotonía: uso la tabla de a) con $a=36$.*
 
@@ -69,6 +77,8 @@ $$t^2-10t+9=0:\quad t=\frac{10\pm\sqrt{100-36}}{2}=\frac{10\pm8}{2},\ \text{lueg
 
 ### f) Comportamiento a largo plazo
 
+Teoría: [[1 - Teoría Funciones#1. Límites|Límites]] · [[1 - Teoría Funciones#5. Asíntotas|Asíntotas]]
+
 *Largo plazo: $t\to+\infty$. Grado mayor abajo, así que el límite es $0$ y hay AH.*
 
 $$\lim_{t\to+\infty}\frac{36t}{t^2+9}=0$$
@@ -78,6 +88,8 @@ $$\lim_{t\to+\infty}\frac{36t}{t^2+9}=0$$
 > **Respuesta:** $\lim\limits_{t\to+\infty}C(t)=0$, luego $y=0$ es asíntota horizontal: el medicamento se va eliminando y la concentración tiende a $0$ mg/l, aunque nunca llega a cero. No hay asíntotas verticales ni oblicuas.
 
 ### g) Velocidad inicial y recta tangente en $t=0$
+
+Teoría: [[1 - Teoría Funciones#10. Recta tangente|Recta tangente]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]]
 
 *Velocidad = derivada; al tomarlo, $t=0$. Necesito $C(0)$ y $C'(0)$.*
 
@@ -89,12 +101,13 @@ $$y-C(0)=C'(0)\,(t-0),\quad\text{luego}\quad y=4t$$
 
 ### h) Curvatura e instante de máxima disminución
 
+Teoría: [[1 - Teoría Funciones#8. Curvatura y puntos de inflexión|Curvatura y puntos de inflexión]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]] · [[Tabla f, f' y f''#Qué significa cada signo|Tabla f, f' y f'']]
+
 *Disminuye más rápido = $C'$ mínima (lo más negativa posible). Los extremos de $C'$ están donde $C''=0$: en los puntos de inflexión.*
 
 *Derivo $C'(t)=\dfrac{36\,(9-t^2)}{(t^2+9)^2}$ como un cociente, $\left(\dfrac{u}{v}\right)'=\dfrac{u'v-uv'}{v^2}$. Primero cada parte por separado (el denominador lleva regla de la cadena):*
 
-$$u=36\,(9-t^2) \qquad u'=-72t$$
-$$v=(t^2+9)^2 \qquad v'=2\,(t^2+9)\cdot 2t=4t\,(t^2+9)$$
+$$\begin{aligned} u&=36\,(9-t^2) & u'&=-72t \\ v&=(t^2+9)^2 & v'&=2\,(t^2+9)\cdot 2t=4t\,(t^2+9) \end{aligned}$$
 
 *Sustituyo en la fórmula:*
 
@@ -129,6 +142,8 @@ $$C(3\sqrt3)=\frac{36\cdot3\sqrt3}{27+9}=3\sqrt3\approx5{,}20 \qquad C'(3\sqrt3)
 
 ### i) Representación
 
+Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gráfica]]
+
 *Pasa por $(0,0)$, sube con pendiente 4 hasta el máximo $(3,6)$, baja, cambia de curvatura en $(5{,}2;\ 5{,}2)$ y se acerca a $y=0$ sin llegar a tocarla. Puntos de apoyo: $(1;\ 3{,}6)$, $(9;\ 3{,}6)$, $C(12)\approx2{,}82$ y $C(60)\approx0{,}6$.*
 
 ![[ej1_concentracion.svg|760]]
@@ -140,6 +155,8 @@ $$C(3\sqrt3)=\frac{36\cdot3\sqrt3}{27+9}=3\sqrt3\approx5{,}20 \qquad C'(3\sqrt3)
 $$f(x)=\frac{x^2+a\,x+b}{x-1}$$
 
 ### a) Continuidad según $a$ y $b$
+
+Teoría: [[1 - Teoría Funciones#4. Continuidad|Continuidad]] · [[1 - Teoría Funciones#1. Límites|Límites]] · [[1 - Teoría Funciones#6. Derivabilidad|Derivabilidad]]
 
 *Racional: continua en su dominio. En $x=1$, $f(1)$ no existe, así que siempre hay discontinuidad; el tipo depende de si el numerador también se anula ahí.*
 
@@ -163,6 +180,8 @@ $$x^2+ax-1-a=(x-1)(x+1+a),\quad\text{luego}\quad \lim_{x\to1}\frac{(x-1)(x+1+a)}
 
 ### b) Cálculo de $a$ y $b$
 
+Teoría: [[1 - Teoría Funciones#12. Ejercicios con parámetros|Ejercicios con parámetros]] · [[1 - Teoría Funciones#2. Derivadas|Derivadas]]
+
 *"Pasa por $(2,8)$" se traduce en $f(2)=8$. "Tangente paralela al eje de abscisas en $x=3$" se traduce en $f'(3)=0$.*
 
 $$f(2)=\frac{4+2a+b}{2-1}=8,\quad\text{luego}\quad 2a+b=4$$
@@ -176,6 +195,8 @@ $$\begin{cases}2a+b=4\\ a+b=3\end{cases}\quad\text{Restando las dos ecuaciones:}
 > **Respuesta:** $a=1$, $b=2$, y $f(x)=\dfrac{x^2+x+2}{x-1}$.
 
 ### c) Dominio, cortes y asíntotas
+
+Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]] · [[1 - Teoría Funciones#5. Asíntotas|Asíntotas]]
 
 **Dominio.** $x-1=0$ cuando $x=1$.
 
@@ -210,6 +231,8 @@ $$x\to+\infty:\ \frac{4}{x-1}>0 \ (\text{encima}) \qquad x\to-\infty:\ \frac{4}{
 
 ### d) Monotonía y extremos
 
+Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]]
+
 $$f'(x)=\frac{x^2-2x-3}{(x-1)^2}=\frac{(x-3)(x+1)}{(x-1)^2}$$
 
 $$f'(x)=0 \quad\text{cuando}\quad x=3 \text{ o } x=-1$$
@@ -231,6 +254,8 @@ $$f(-1)=\frac{1-1+2}{-2}=-1 \qquad f(3)=\frac{9+3+2}{2}=7$$
 
 ### e) Curvatura
 
+Teoría: [[1 - Teoría Funciones#8. Curvatura y puntos de inflexión|Curvatura y puntos de inflexión]]
+
 *Más rápido que derivar el cociente: $f(x)=x+2+4(x-1)^{-1}$.*
 
 $$f'(x)=1-4(x-1)^{-2} \qquad f''(x)=8(x-1)^{-3}=\frac{8}{(x-1)^3}$$
@@ -246,6 +271,8 @@ $$f'(x)=1-4(x-1)^{-2} \qquad f''(x)=8(x-1)^{-3}=\frac{8}{(x-1)^3}$$
 
 ### f) Tangentes paralelas a $3x+y=5$
 
+Teoría: [[1 - Teoría Funciones#10. Recta tangente|Recta tangente]]
+
 *Paralela = misma pendiente: $y=-3x+5$, $m=-3$. Resuelvo $f'(x)=-3$.*
 
 $$\frac{x^2-2x-3}{(x-1)^2}=-3 \quad\text{equivale a}\quad x^2-2x-3=-3(x^2-2x+1)$$
@@ -260,6 +287,8 @@ $$x=2:\ f(2)=8,\quad y-8=-3(x-2),\quad\text{luego}\quad y=-3x+14$$
 > **Respuesta:** Las tangentes paralelas a $3x+y=5$ son $y=-3x-2$, en $(0,-2)$, e $y=-3x+14$, en $(2,8)$.
 
 ### g) Representación
+
+Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gráfica]]
 
 *AV $x=1$, AO $y=x+2$. Rama izquierda (convexa ◠): viene de $-\infty$ por debajo de la AO, sube al máximo $(-1,-1)$, pasa por $(0,-2)$ y cae a $-\infty$ junto a $x=1$. Rama derecha (cóncava ◡): baja desde $+\infty$ al mínimo $(3,7)$ y sube pegada a la AO por encima.*
 
@@ -278,6 +307,8 @@ $$
 
 ### a) Dominio
 
+Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]]
+
 *Cada problema solo cuenta si cae en el intervalo de su trozo.*
 
 $$\text{Trozo 1 } (x\leq0):\quad x+2=0 \text{ cuando } x=-2,\ \text{y como } -2\leq 0,\ \text{se excluye.}$$
@@ -286,6 +317,8 @@ $$\text{Trozo 2 } (x>0):\quad x+1>0 \text{ cuando } x>-1,\ \text{que se cumple p
 > **Respuesta:** $\text{Dom}(f)=\mathbb{R}-\{-2\}$. El denominador del primer trozo se anula en $x=-2$, que pertenece a su intervalo, así que se excluye. El logaritmo exige $x>-1$, que siempre se cumple en el segundo trozo ($x>0$).
 
 ### b) Continuidad y derivabilidad en $x=0$
+
+Teoría: [[1 - Teoría Funciones#4. Continuidad|Continuidad]] · [[1 - Teoría Funciones#6. Derivabilidad|Derivabilidad]] · [[1 - Teoría Funciones#12. Ejercicios con parámetros|Ejercicios con parámetros]]
 
 *Sin levantar el lápiz = continua; sin picos = derivable. $f(0)$ se calcula con el primer trozo ($x\leq0$).*
 
@@ -311,6 +344,8 @@ $$\frac{2a-2}{4}=1,\quad\text{luego}\quad 2a-2=4\quad\text{y}\quad a=3$$
 
 ### c) Puntos de corte
 
+Teoría: [[1 - Teoría Funciones#3. Dominio y puntos de corte|Dominio y puntos de corte]]
+
 *Con $a=3$, $b=2$. Resuelvo $f(x)=0$ en cada trozo y compruebo el intervalo.*
 
 $$\text{Trozo 1: } \frac{3x+2}{x+2}=0 \text{ cuando } x=-\frac23 \quad (\leq 0,\ \text{vale})$$
@@ -320,6 +355,8 @@ $$\text{Eje Y: } f(0)=\frac{2}{2}=1$$
 > **Respuesta:** Corta al eje X en $\left(-\tfrac23,\,0\right)$ y al eje Y en $(0,\,1)$. La solución $x=e^{-1}-1$ del segundo trozo se descarta porque no cumple $x>0$.
 
 ### d) Asíntotas
+
+Teoría: [[1 - Teoría Funciones#5. Asíntotas|Asíntotas]] · [[1 - Teoría Funciones#1. Límites|Límites]]
 
 **AV.** *Candidatos: $x=-2$ y $x=0$ (unión, pero ahí es continua). Numerador en $-2$: $-4$.*
 
@@ -342,6 +379,8 @@ $$m=\lim_{x\to+\infty}\frac{1+\ln(x+1)}{x}=0,\quad\text{luego no hay AO}$$
 
 ### e) Monotonía
 
+Teoría: [[1 - Teoría Funciones#7. Monotonía y extremos|Monotonía y extremos]]
+
 *Derivadas de b) con $a=3$, $b=2$; $f'(0)=1$.*
 
 $$f'(x)=\begin{cases}\dfrac{4}{(x+2)^2} & \text{si } x\leq 0,\ x\neq-2\\[3mm] \dfrac{1}{x+1} & \text{si } x>0\end{cases}$$
@@ -359,6 +398,8 @@ $$f'(x)=\begin{cases}\dfrac{4}{(x+2)^2} & \text{si } x\leq 0,\ x\neq-2\\[3mm] \d
 
 ### f) Curvatura
 
+Teoría: [[1 - Teoría Funciones#8. Curvatura y puntos de inflexión|Curvatura y puntos de inflexión]]
+
 $$f''(x)=\begin{cases}\dfrac{-8}{(x+2)^3} & \text{si } x<0,\ x\neq-2\\[3mm] \dfrac{-1}{(x+1)^2} & \text{si } x>0\end{cases}$$
 
 *Si $x<-2$, $(x+2)^3<0$ y $f''>0$; si $-2<x<0$, $f''<0$. El segundo trozo es siempre negativo. En $x=0$ no cambia la curvatura.*
@@ -372,6 +413,8 @@ $$f''(x)=\begin{cases}\dfrac{-8}{(x+2)^3} & \text{si } x<0,\ x\neq-2\\[3mm] \dfr
 
 ### g) Rectas tangentes
 
+Teoría: [[1 - Teoría Funciones#10. Recta tangente|Recta tangente]]
+
 *Corte con el eje X en $x=-\frac23$ (apartado c). Pendiente con el trozo 1:*
 
 $$f'\!\left(-\tfrac23\right)=\frac{4}{\left(\frac43\right)^2}=\frac{4}{\frac{16}{9}}=\frac94$$
@@ -384,6 +427,8 @@ $$y-1=1\cdot(x-0),\quad\text{luego}\quad y=x+1$$
 > **Respuesta:** La tangente en el corte con el eje de abscisas, $\left(-\tfrac23,0\right)$, es $y=\tfrac94x+\tfrac32$. La tangente en el punto de unión, $(0,1)$, es $y=x+1$, común a los dos trozos porque $f$ es derivable en $x=0$.
 
 ### h) Representación
+
+Teoría: [[1 - Teoría Funciones#9. Representación gráfica|Representación gráfica]]
 
 *Rama izquierda ($x<-2$, cóncava ◡): sale de la AH $y=3$ por encima y sube a $+\infty$ junto a $x=-2$. Rama central (convexa ◠): sube desde $-\infty$ junto a $x=-2$, pasa por $\left(-\tfrac23,0\right)$ y $(0,1)$ y sigue con el logaritmo, cada vez más despacio. Apoyo: $f(-4)=5$, $f(-3)=7$, $f(-1)=-1$, $f(1)\approx1{,}69$, $f(3)\approx2{,}39$.*
 
